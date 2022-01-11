@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // the below is necessary for heroku deployment
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001 || 3000;
 
 export const savedBooks =  axios.create({
     baseURL: `http://localhost:${port}/bookshelf`
