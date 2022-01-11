@@ -38,17 +38,42 @@ class Navigation extends Component {
             )
     }
 
-    render() {
-        return(
-            <div className="ui">
-                <div className="ui top sticky menu">
-                    <div className="item">
-                        <h2>Haru Books</h2>
-                    </div>
+    renderMenu = () => {
+        return this.props.width > 600 ?  (
+        <>
+            <div className="item" />
+            <div className="item">
+                <OAuth />
+            </div>
+            {this.onLocationChange()}
+        </>
+        )
+        :(
+            <>
+            <div className='item' />
+            <div className="ui dropdown icon item">
+                <i className="wrench icon"></i>
+                <div className="menu">
                     <div className="item">
                         <OAuth />
                     </div>
                     {this.onLocationChange()}
+                </div>
+            </div>
+            </>
+        )
+    }
+
+    render() {
+        return(
+            <div className="ui">
+                <div className="ui top attached menu">
+                    <div className='ui container'>
+                        <div className='ui container'>
+                            <h2 style={{marginTop: "0.5rem", marginLeft: "1rem"}}>Haru Books</h2>
+                        </div>
+                        {this.renderMenu()}
+                    </div>
                 </div>
             </div>
         )

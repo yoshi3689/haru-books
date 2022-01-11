@@ -10,11 +10,9 @@ class BookFinder extends Component {
         const initialValues = {term: "apple"};
     return (
         <div>
-            {/* <div className="ui container">
-            </div> */}
             <SearchBar initialValues={initialValues}/>
             {this.props.books &&
-                <BookShowcase books={Object.values(this.props.books)} pathname={this.props.match.url}/>
+                <BookShowcase books={Object.values(this.props.books)} pathname={this.props.match.url} width={this.props.width} />
             }
         </div>
     )

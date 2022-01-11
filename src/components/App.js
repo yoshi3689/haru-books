@@ -15,13 +15,31 @@ import history from './history';
 
 
 class App extends Component {
+    state = { 
+        width: null,};
+    
+        // if I'm using the the normal function notation,
+        // I have to bind "this"
+        // but i fI was to use , the arrow function, everything is fine
+    getWidth = () => {
+        const { innerWidth } = window;
+        this.setState({ width: innerWidth });
+    }
 
+    componentDidMount() {
+        window.addEventListener('resize', this.getWidth);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.getWidth);
+    }
+    
     render() {
     return (
         <div>
             <Router history={history} >
-                <Navigation key={window.location.pathname} />
-                <Route exact path="/" component={BookFinder} />
+                <Navigation key={window.location.pathname} width={this.state.width} />
+                <Route exact path="/" component={BookFinder} width={this.state.width} />
                 <Route exact path="/:volumeId" component={BookSave} />
 
                 <Route exact path="/bookshelf/:userId" component={Bookshelf} />

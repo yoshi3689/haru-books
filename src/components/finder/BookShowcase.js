@@ -5,27 +5,18 @@ class BookShowcase extends Component {
     state = { 
         cardNum: null,};
 
-    componentDidMount() {
-        console.log(this.updateCardNum())
-        window.addEventListener('resize', this.updateCardNum);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateCardNum);
-    }
-
     updateCardNum = () => {
         let cardNum = 'two';
-        const { innerWidth } = window;
-        if (innerWidth > 700 && innerWidth < 1000 ) {
+        const { width } = this.props;
+        if (width > 700 && width < 1000 ) {
             cardNum = "three";
-        } else if (innerWidth >= 1000) {
+        } else if (width >= 1000) {
             cardNum = "five";
-        } else if (innerWidth < 450) {
+        } else if (width < 450) {
             cardNum = "one";
         } 
         this.setState({ cardNum: cardNum});
-      }
+        }
     
     renderResult = books => {
         if(books) {
@@ -38,6 +29,7 @@ class BookShowcase extends Component {
                 {result}
             </h2>)
         }
+
         
         return(
             <h2 className="label">
@@ -71,9 +63,12 @@ class BookShowcase extends Component {
     render(){
         const { books } = this.props;
         return (
-            <div className="ui container" id="mt-2">
+            <div className="ui container">
                 {this.renderResult(books)}    
-                <div className={`ui ${this.state.cardNum} cards`}>
+                <div className={this.state.cardNum === "one" 
+                ? "ui grid center"
+                : `ui ${this.state.cardNum} cards`
+            }>
                     {this.renderBookRows(books)}
                 </div>
             </div>
