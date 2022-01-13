@@ -5,20 +5,17 @@ import { fetchSavedBooks } from '../../actions/index';
 
 class Bookshelf extends Component {
     componentDidMount() {
-        this.props.fetchSavedBooks();
+        this.props.fetchSavedBooks(this.props.match.params.userId);
     }
     
     render() {
-        //console.log(this.props.books);
+        console.log(this.props.books);
         return(
-            <div>
                 <div className="ui container">
-                    <h1> Shelf </h1>
-                </div>
-                {this.props.books &&
+                    {this.props.books &&
                     <BookShowcase books={Object.values(this.props.books)} pathname={this.props.match.url} />
                 }
-            </div>
+                </div>
         )
     }
 }

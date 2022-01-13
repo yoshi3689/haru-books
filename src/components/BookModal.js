@@ -9,6 +9,7 @@ class BookModal extends Component {
         this.descRef = React.createRef();
         this.state = ({clampNum: 0});
     }
+    buyLink
     componentDidMount() {
         console.log(this.descRef.current);
         this.setClampNum(this.descRef.current);

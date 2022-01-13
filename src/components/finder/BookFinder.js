@@ -7,6 +7,7 @@ import { fetchBooks } from '../../actions/index';
 
 class BookFinder extends Component {
     render() {
+        console.log(this.props)
         const initialValues = {term: "apple"};
     return (
         <div>

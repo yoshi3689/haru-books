@@ -13,9 +13,10 @@ class OAuth extends Component {
                 scope: 'email'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
+                // make a POST request to see if the user already exists
+                // this.auth.currentUser.get().getBasicProfile().FX
+                // this.auth.currentUser.get().getBasicProfile().pW
                 this.onAuthChange(this.auth.isSignedIn.get());
-                //this line below awaits the sign-in status to be changed,
-                // and if the user is signed in, fire the function passed
                 this.auth.isSignedIn.listen(this.onAuthChange)
             });
         });
@@ -25,6 +26,7 @@ class OAuth extends Component {
         const {signIn, signOut} = this.props;
 
         if(isSignedIn) {
+            console.log();
             signIn(this.auth.currentUser.get().getId());
         } else {
             signOut();
@@ -37,6 +39,7 @@ class OAuth extends Component {
 
     onSignOutClick = () => {
         this.auth.signOut();
+        window.location.replace("/");
     }
 
     renderAuthButton = () => {

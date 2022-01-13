@@ -6,12 +6,15 @@ import BookModal from '../BookModal';
 
 class BookShelfDelete extends Component {
     componentDidMount() {
+        // since auth is pulled from the redux store, 
+        // the initial val of it is null
         const { match, fetchSavedBook, auth} = this.props;
-        fetchSavedBook(match.params.volumeId, auth.userId);
+        console.log(match, fetchSavedBook, auth);
+        
+        fetchSavedBook(match.params.volumeId, match.params.userId);
     }
 
     render() {
-        console.log(this.props)
         const { book, auth, match } =this.props;
         return (
             <>

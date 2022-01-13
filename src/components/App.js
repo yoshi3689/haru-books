@@ -39,7 +39,7 @@ class App extends Component {
         <div>
             <Router history={history} >
                 <Navigation key={window.location.pathname} width={this.state.width} />
-                <Route exact path="/" component={BookFinder} width={this.state.width} />
+                <Route exact path="/" component={BookFinder} />
                 <Route exact path="/:volumeId" component={BookSave} />
 
                 <Route exact path="/bookshelf/:userId" component={Bookshelf} />

@@ -54,7 +54,7 @@ class BookItem extends Component {
                 );
     }
 
-    renderRetailprice = ({retailPrice, saleability}) => {
+    renderRetailPrice = ({retailPrice, saleability}) => {
         return(
             <div className="description"
                 style={{
@@ -62,7 +62,7 @@ class BookItem extends Component {
                     paddingTop: "1rem",
                     marginBottom: "1rem"
             }}
-            >
+            >imageLinks
                 <i className="money bill alternate icon"></i>
                 <span>
                     {retailPrice
@@ -90,7 +90,6 @@ class BookItem extends Component {
         ? volumeId
         : window.location.pathname + volumeId;
         //console.log(link);
-
         const { volumeInfo, saleInfo } = this.props.bookInfo;
         //console.log(volumeInfo, this.props.bookInfo)
         if(volumeInfo) {
@@ -105,6 +104,8 @@ class BookItem extends Component {
                             ? volumeInfo.imageLinks.thumbnail
                             : '/img/square-image.png'
                         }
+                        // infoLink
+                        // previewLink
                         alt={volumeInfo.title}
                         style={{
                             height: `${this.state.imgHeight}px`
@@ -131,7 +132,7 @@ class BookItem extends Component {
 
                     {this.renderAuthors(volumeInfo)}
                     <br></br>
-                    {this.renderRetailprice(saleInfo)}
+                    {this.renderRetailPrice(saleInfo)}
             
                 </div>
                 <Link 

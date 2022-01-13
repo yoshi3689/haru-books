@@ -2,20 +2,27 @@ import React, { Component } from 'react';
 import BookItem from './BookItem';
 
 class BookShowcase extends Component {
-    state = { 
-        cardNum: null,};
+    state = { cardNum: "two" };
 
     updateCardNum = () => {
         let cardNum = 'two';
-        const { width } = this.props;
-        if (width > 700 && width < 1000 ) {
+        const { innerWidth } = window;
+        if (innerWidth > 700 && innerWidth < 1000 ) {
             cardNum = "three";
-        } else if (width >= 1000) {
+        } else if (innerWidth >= 1000) {
             cardNum = "five";
-        } else if (width < 450) {
+        } else if (innerWidth < 450) {
             cardNum = "one";
         } 
         this.setState({ cardNum: cardNum});
+        }
+    
+        componentDidMount() {
+            window.addEventListener('resize', this.updateCardNum);
+        }
+
+        componentWillUnmount() {
+            window.removeEventListener('resize', this.updateCardNum);
         }
     
     renderResult = books => {
@@ -65,10 +72,7 @@ class BookShowcase extends Component {
         return (
             <div className="ui container">
                 {this.renderResult(books)}    
-                <div className={this.state.cardNum === "one" 
-                ? "ui grid center"
-                : `ui ${this.state.cardNum} cards`
-            }>
+                <div className={`ui ${this.state.cardNum} cards`}>
                     {this.renderBookRows(books)}
                 </div>
             </div>

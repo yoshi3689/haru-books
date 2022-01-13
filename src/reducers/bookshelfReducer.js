@@ -22,7 +22,6 @@ export const bookshelfReducer = (state=null, action) => {
 export const savedBookReducer = (state=null, action) => {
     switch (action.type) {
         case FETCH_SAVED_BOOK :
-            // return action.payload;
            return state = action.payload;
         default :
            return state;
