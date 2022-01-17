@@ -7,19 +7,8 @@ class BookModal extends Component {
     constructor(props) {
         super(props);
         this.descRef = React.createRef();
-        this.state = ({clampNum: 0});
     }
     buyLink
-    componentDidMount() {
-        console.log(this.descRef.current);
-        this.setClampNum(this.descRef.current);
-        //this.descRef.current.addEventListener('load', this.sayYes)
-    }
-
-    setClampNum = ref => {
-        console.log(ref.clientHeight);
-        // this.setState({clampNum: });
-    }
 
     renderRetailprice = ({retailPrice, saleability}) => {
         return(
@@ -58,7 +47,6 @@ class BookModal extends Component {
     }
 
     render() {
-        console.log(this.state);
         const { volumeInfo } = this.props.book
         if(this.props.book) {
             return(

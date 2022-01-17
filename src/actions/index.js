@@ -37,7 +37,6 @@ export const fetchBooks = formValues => async (dispatch, getState) => {
 };
 export const fetchBook = volumeId => async dispatch => {
     const { data } = await googleBook.get(`/volumes/${volumeId}`);
-    console.log(data.volumeInfo);
     dispatch({type: FETCH_BOOK, payload: data});
 }
 export const clearBooks = () => {
@@ -47,34 +46,28 @@ export const clearBooks = () => {
 }
 
 export const fetchSavedBooks = (userId) => async(dispatch) => {
-    console.log(userId);
-    const { data } = await savedBooks.get(userId);
-
-    console.log(data);
-    dispatch({type: FETCH_SAVED_BOOKS, payload: data.data});
+    if (userId) {
+        const { data } = await savedBooks.get(userId);
+        dispatch({type: FETCH_SAVED_BOOKS, payload: data.data});
+    }
 }
 export const fetchSavedBook = (volumeId, userId) => async dispatch =>{
     const { data } = await savedBooks.get(`/${userId}/${volumeId}`);
     if(data.data.userId === userId) {
         dispatch({type: FETCH_SAVED_BOOK, payload: data.data});
     } else {
-        console.log('this is not your book')
     }  
 }
 export const saveBook = (bookToSave, userId) => async dispatch => {
     const { data } = await savedBooks.post('', {userId, id: bookToSave.id ,saleInfo: {retailPrice: bookToSave.saleInfo.retailPrice},volumeInfo: {...bookToSave.volumeInfo}});
-    console.log(data);
     dispatch({type: SAVE_BOOK, payload: data});
     history.push('/');
     
-    //console.log("route change went sucessfully");
 }
 export const deleteSavedBook = (volumeId, userId) => async dispatch => {
     await savedBooks.delete(`/${userId}/${volumeId}`);
     dispatch({type: DELETE_SAVED_BOOK, payload: volumeId});
-    console.log('deleted from the Redux');
     history.push(`/bookshelf/${userId}`);
-    //console.log("route change went sucessfully");
 }
 
 export const fetchUsers = () => async(dispatch) => {

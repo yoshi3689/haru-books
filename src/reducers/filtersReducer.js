@@ -96,7 +96,6 @@ const INITIAL_SELECTIONS = {
 [ORDER]:orders[0], [MAX_RESULT_NUM]:maxResultNums[0], [LANGUAGE]:languages[0], [FILTER]:filters[0], [PRINTTYPE]:printTypes[0] 
 };
 export const selectionReducer = ( state=INITIAL_SELECTIONS, action) => {
-    //console.log(state, action.payload)
     switch(action.type) {
         case LANG_SELECTED:
             return { ...state, ...action.payload };
@@ -113,48 +112,3 @@ export const selectionReducer = ( state=INITIAL_SELECTIONS, action) => {
     }
 
 }
-
-// export const selectedLanguageReducer = (state=optionsReducer().languages[0], action) => {
-//     switch(action.type) {
-//         case LANG_SELECTED:
-//             return action.payload;
-//         default: 
-//             return state;
-//     }
-// }
-
-// export const selectedFilterReducer = (state=optionsReducer().filters[0], action) => {
-//     switch(action.type) {
-//         case FILTER_SELECTED:
-//             return action.payload;
-//         default: 
-//             return state;
-//     }
-// }
-
-// export const selectedPrintTypeReducer = (state=optionsReducer().printTypes[0], action) => {
-//     switch(action.type) {
-//         case PRINTTYPE_SELECTED:
-//             return action.payload;
-//         default: 
-//             return state;
-//     }
-// }
-
-// export const selectedOrderReducer = (state=optionsReducer().orders[0], action) => {
-//     switch(action.type) {
-//         case ORDER_SELECTED:
-//             return action.payload;
-//         default:
-//             return state;
-//     };
-// };
-
-// export const selectedMaxResultNum = (state=optionsReducer().maxResultNums[0], action) => {
-//     switch(action.type) {
-//         case MAX_RESULT_NUM_SELECTED:
-//             return action.payload;
-//         default:
-//             return state;
-//     };
-// }

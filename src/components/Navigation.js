@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-//import history from './history';
 import { getPath } from '../actions/index';
 import OAuth from './OAuth';
 
@@ -39,7 +38,7 @@ class Navigation extends Component {
     }
 
     renderMenu = () => {
-        return this.props.width > 600 ?  (
+        return this.props.width > 767 ?  (
         <>
             <div className="item" />
             <div className="item">
@@ -50,8 +49,8 @@ class Navigation extends Component {
         )
         :(
             <>
-            <div className='item' />
-            <div className="ui dropdown icon item">
+            <div style={{margin: "0 auto"}}></div>
+            <div className="ui simple dropdown icon item">
                 <i className="wrench icon"></i>
                 <div className="menu">
                     <div className="item">
@@ -68,11 +67,9 @@ class Navigation extends Component {
         return(
             <div className="ui">
                 <div className="ui top attached menu">
+                {this.renderMenu()}
                     <div className='ui container'>
-                        <div className='ui container'>
-                            <h2 style={{marginTop: "0.5rem", marginLeft: "1rem"}}>Haru Books</h2>
-                        </div>
-                        {this.renderMenu()}
+                        <h2 style={{marginTop: "0.5rem", marginLeft: "auto", marginRight: "3rem"}}>Haru Books</h2>
                     </div>
                 </div>
             </div>

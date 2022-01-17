@@ -9,7 +9,6 @@ class Bookshelf extends Component {
     }
     
     render() {
-        console.log(this.props.books);
         return(
                 <div className="ui container">
                     {this.props.books &&

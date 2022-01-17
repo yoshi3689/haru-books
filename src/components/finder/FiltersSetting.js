@@ -62,7 +62,6 @@ class FiltersSetting extends Component {
 }
 
 const mapStateProps = (state) => {
-    //console.log(state.selections);
     return {
         options: state.options,
         language: state.selections.LANGUAGE,

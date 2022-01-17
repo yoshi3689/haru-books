@@ -16,11 +16,9 @@ import history from './history';
 
 class App extends Component {
     state = { 
-        width: null,};
+        width: window.innerWidth,};
     
-        // if I'm using the the normal function notation,
-        // I have to bind "this"
-        // but i fI was to use , the arrow function, everything is fine
+    // should be an arrow function to avoid binding "this"
     getWidth = () => {
         const { innerWidth } = window;
         this.setState({ width: innerWidth });

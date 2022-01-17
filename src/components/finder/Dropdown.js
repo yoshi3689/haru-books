@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
-// import { connect } from 'react-redux';
 
 const Dropdown = ( { label, options, selected, onSelectedClick} ) => {
-    //console.log(selected, options);
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef();
 
@@ -60,13 +58,5 @@ const Dropdown = ( { label, options, selected, onSelectedClick} ) => {
     </div>
     )
 }
-
-/*solution to connecting a grandchild component to redux store https://react-redux.js.org/using-react-redux/connect-mapdispatch */
-
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//     return {
-//         onClick: (option) => dispatch(ownProps.onSelectedClick(option))
-//     }
-// }
 
 export default Dropdown;
