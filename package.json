@@ -31,10 +31,10 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "build": "--openssl-legacy-provider && react-scripts build",
-    "test": "--openssl-legacy-provider && react-scripts test",
-    "eject": "--openssl-legacy-provider && react-scripts eject",
-    "start": "--openssl-legacy-provider && node backend/server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start": "node backend/server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   },
   "eslintConfig": {
