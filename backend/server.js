@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const proxy = require("http-proxy-middleware");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -9,19 +9,15 @@ const SavedBook = require("./models/SavedBook");
 const app = express();
 const PORT = process.env.PORT || 3002; 
 
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}))
+app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("common"));
 app.use(express.static("public"));
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
-app.use(proxy("/*", { target: `http://localhost:/${PORT}` }));
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../build'));
 });
 
 app.post("/bookshelf", async (req, res) => {
@@ -127,7 +123,7 @@ app.post("/bookshelf", async (req, res) => {
       });
 
     
-    mongoose.connect("mongodb+srv://yoshi:1234@cluster0.yhgyt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+    mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
