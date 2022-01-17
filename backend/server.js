@@ -7,7 +7,6 @@ const cors = require("cors");
 const SavedBook = require("./models/SavedBook");
 
 const app = express();
-const PORT = process.env.PORT || 3002; 
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -123,9 +122,10 @@ app.post("/bookshelf", async (req, res) => {
       });
 
     
-    mongoose.connect(process.env.REACT_APP_MONGODB_URI, {
+    mongoose.connect("mongodb+srv://yoshi:1234@cluster0.yhgyt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
-    .then(() => app.listen(PORT, () => console.log(`server running on port ${PORT}`)))
+
+    .then(() => app.listen(process.env.PORT || 3002, () => console.log(`server running on port `)))
     .catch((err) => console.log(err));
