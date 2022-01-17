@@ -4,11 +4,11 @@ import axios from 'axios';
 const port = process.env.PORT || 3002;
 
 export const savedBooks =  axios.create({
-    baseURL: `http://localhost:${port}/bookshelf`
+    baseURL: `/bookshelf`
 });
 
 export const users =  axios.create({
-    baseURL: `http://localhost:${port}/users`
+    baseURL: `/users`
 });
 
 
