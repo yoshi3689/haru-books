@@ -8,7 +8,7 @@ class BookSave extends Component {
     componentDidMount() {
         const { match, fetchBook} = this.props;
         fetchBook(match.params.volumeId);
-        this.props.fetchSavedBooks();
+        // this.props.fetchSavedBooks();
     }
 
     onClick = (book, userId) => {

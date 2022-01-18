@@ -9,17 +9,24 @@ const SavedBook = require("./models/SavedBook");
 const app = express();
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use("*", cors())
 app.use(morgan("common"));
-app.use(express.static("public"));
 
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '..', 'build')));
 
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build'));
+  res.sendFile(path.join(__dirname, '../build'), 'index.html');
+  res.end();
 });
+// app.use(express.static(path.join(__dirname, '..' ,'public')));
+// app.get('/*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../public'), 'index.html');
+//   res.end();
+// });
 
-app.post("/bookshelf", async (req, res) => {
+app.post("/bookshelf/:userId", async (req, res) => {
       const { userId, saleInfo, volumeInfo, id } = req.body;
       const { title,
         subtitle,
@@ -127,5 +134,5 @@ app.post("/bookshelf", async (req, res) => {
       useUnifiedTopology: true
     })
 
-    .then(() => app.listen(process.env.PORT || 3002, () => console.log(`server running on port `)))
+    .then(() => app.listen(process.env.PORT || 3000, () => console.log(`server running on port `)))
     .catch((err) => console.log(err));

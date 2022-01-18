@@ -48,7 +48,7 @@ export const clearBooks = () => {
 
 export const fetchSavedBooks = (userId) => async(dispatch) => {
     if (userId) {
-        const { data } = await savedBooks.get(userId);
+        const { data } = await savedBooks.get(`/${userId}`);
         dispatch({type: FETCH_SAVED_BOOKS, payload: data.data});
     }
 }
@@ -56,14 +56,16 @@ export const fetchSavedBook = (volumeId, userId) => async dispatch =>{
     const { data } = await savedBooks.get(`/${userId}/${volumeId}`);
     if(data.data.userId === userId) {
         dispatch({type: FETCH_SAVED_BOOK, payload: data.data});
-    } else {
-    }  
+    } 
 }
 export const saveBook = (bookToSave, userId) => async dispatch => {
-    const { data } = await savedBooks.post('', {userId, id: bookToSave.id ,saleInfo: {retailPrice: bookToSave.saleInfo.retailPrice},volumeInfo: {...bookToSave.volumeInfo}});
-    dispatch({type: SAVE_BOOK, payload: data});
+    try {
+        const { data } = await savedBooks.post(`/${userId}`, {userId, id: bookToSave.id ,saleInfo: {retailPrice: bookToSave.saleInfo.retailPrice},volumeInfo: {...bookToSave.volumeInfo}});
+        dispatch({type: SAVE_BOOK, payload: data.data});
+    } catch (error) {
+        console.log(error);
+    }
     history.push('/');
-    
 }
 export const deleteSavedBook = (volumeId, userId) => async dispatch => {
     await savedBooks.delete(`/${userId}/${volumeId}`);
